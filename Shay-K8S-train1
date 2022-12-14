@@ -1,2 +1,62 @@
-dssdd
-fdhdhd
+
+MY ANSWERS MARK WITH: >>>
+
+ASSIGNMENT STEPS 👇 
+FIRST : Take the voting app presentation (PPT) and understand the landscape of the application.
+
+
+1. go to root (cd $home )
+>> Done
+2. git clone https://github.com/ashishrpandey/example-voting-app
+
+>>> done
+3. cd /root/example-voting-app/k8s-specifications
+>>> done
+4. kubectl apply -f .
+>>> done
+5. for voting and result pods, Observe that NodePort is assigned.
+>>> done
+6. take your publicIP (your instance IP) : NodePort ► open 2 browsers , one for VOTING and one for Results.
+>>> done
+7 try voting and see the results paralelly in results page.
+>>> done, see all OK
+
+8. Now try to delete the Pods one by one (first voting Pod, then worker pod, then db pod) and see what happens to the voting and result app after deleting.
+
+☝️ Delete them in same order 
+1st ► VOTE pod ► Observe what happens both in frontEnd & in Unix
+2nd ► WORKER pod ► Observe what happens both in frontEnd & in Unix
+3rd ► DB pod ► Observe what happens both in frontEnd & in Unix
+☝️ Dont delete REDIS or Result Pods 
+>>> once we delete the voting Pod – it was terminated and new voting Pod was created – both wed page continue to work OK.
+>>> once we delete the worker Pod – it was terminated and new worker Pod was created – both wed page continue to work OK.
+>>> once we delete the db Pod – it was terminated and new db Pod was created – the vote wed page continue to work OK, but the result wed page was stuck, after refresh the page we got default values and info was not update.
+>>> only after I delete the result pod and refresh the result web page – all continue to work OK.
+9 Write your observations in a text file.
+>>> See below 
+10. what happens after db pod deletion?
+>>> See below
+11. complete the assignment by making the result pod work.
+>>> only after I delete the result pod and refresh the result web page – all continue to work OK.
+12. Write in the text file, what you did in order to make the result pod work.
+>>> only after I delete the result pod and refresh the result web page – all continue to work OK.
+in summary, your text file should contain:
+
+1. Commands that you used during the assignment. (not Mandatory, if you have time, please write it)
+
+2. snapshot of logs (wherever possible, not mandatory, if you have time, please write it)
+
+3. your comment on WHY result app STOPPED working after db pod stop
+>>> I assume the order we initiate / start the pods is important.
+>>> Since the result pod is the one which establish the connection with the DB.
+>>> So when delete the db pod, new db pod was created – but it was isolate from the result pod.
+>>> After delete the result pod, new result pod was created + need to refresh the web page and all works OK.
+
+>>> Question:
+>>> How came the connection of the DB with the worker did not break ?
+>>> Why do I need to refresh the result web page ?
+4. your answer to HOW YOU MADE THE RESULT POD work.
+>>> only after I delete the result pod and refresh the result web page – all continue to work OK.
+5. Some jargons (just names are enough- dont need sentences) that you learnt from the Training session
+>>> pod do have relation between them, so the order we initiate / start them is important
+
